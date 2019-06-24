@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<projectConfiguration>
+    <configVersion>2</configVersion>
+    <relativeTo>WORKSPACE</relativeTo>
+    <referencedLibrary type="PYTHON" name="SeleniumLibrary" path="C:/Python37/Lib/site-packages/SeleniumLibrary/__init__.py"/>
+    <referencedLibrary type="PYTHON" name="customLibrary" path="C:/Python37/Lib/site-packages/customLibrary/__init__.py"/>
+    <referencedLibrary type="PYTHON" name="openlibrary" path="C:/Python37/Lib/site-packages/openlibrary/__init__.py"/>
+    <referencedLibrary type="PYTHON" name="random" path="C:/Python37/Lib/random.py"/>
+    <pythonpath/>
+    <classpath/>
+    <excludedForValidation/>
+    <isValidatedFileSizeCheckingEnabled>true</isValidatedFileSizeCheckingEnabled>
+    <validatedFileMaxSize>1024</validatedFileMaxSize>
+</projectConfiguration>

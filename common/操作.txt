@@ -1,0 +1,191 @@
+*** Settings ***
+Library           SeleniumLibrary
+Library           DateTime
+Library           DatabaseLibrary
+Library           Collections
+Library           customLibrary
+Library           random
+Library           openlibrary
+
+*** Keywords ***
+单击
+    [Arguments]    ${元素Xpath}
+    [Documentation]    单击某个元素
+    Wait Until Page Contains Element    xpath=${元素Xpath}    timeout=10s    error=元素不可见
+    click Element    Xpath=${元素Xpath}
+
+双击
+    [Arguments]    ${元素Xpath}
+    [Documentation]    双击某个元素
+    double click Element    ${元素Xpath}
+
+清空文本
+    [Arguments]    ${元素Xpath}
+    Clear Element Text    ${元素Xpath}
+
+获取元素属性
+    [Arguments]    ${元素Xpath}
+    [Documentation]    获取元素的属性内容，并返回
+    ${info}    Get Element Attribute    ${元素Xpath}
+    [Return]    ${info}    # 返回的元素属性内容
+
+获取属性值
+    [Arguments]    ${Xpath}
+    Wait Until Page Contains Element    xpath=${Xpath}    timeout=10s    error=元素不可见
+    ${value}    Get Value    ${Xpath}
+    [Return]    ${value}
+
+等待
+    [Arguments]    ${time}
+    BuiltIn.Sleep    ${time}
+
+加法
+    [Arguments]    ${arg1}    ${arg2}
+    ${result}    Evaluate    ${arg1} + ${arg2}
+    [Return]    ${result}
+
+加载框消失
+    Wait Until Element Is Not Visible    Xpath=//*[@class="busy-indicator-container"]/div/p/img
+
+输入文字
+    [Arguments]    ${Xpath}    ${info}
+    元素可见    ${Xpath}
+    input text    Xpath=${Xpath}    ${info}
+
+等待执行成功
+    [Arguments]    ${功能}    @{args}
+    ${result}    Wait Until Keyword Succeeds    30s    2 sec    ${功能}    @{args}
+    [Return]    ${result}
+
+按序号下拉列表
+    [Arguments]    ${Xpath}    ${index}
+    [Documentation]    下拉选择，元素需要是select，列表顺序则为列表项
+    ${No}    Evaluate    ${index} - 1
+    Select From List By Index    Xpath=${Xpath}    ${No}
+
+元素可用
+    [Arguments]    ${Xpath}
+    Wait Until Element Contains    Xpath=${Xpath}    text    timeout=5
+
+元素可见
+    [Arguments]    ${Xpath}
+    Wait Until Element Is Visible    xpath=${Xpath}    timeout=10s    error=元素不可见
+
+赋值
+    [Arguments]    ${data}
+    ${info}    set variable    ${data}
+    [Return]    ${info}
+
+减法
+    [Arguments]    ${arg1}    ${arg2}
+    [Documentation]    arg1 - arg2
+    ${result}    Evaluate    ${arg1} - ${arg2}
+    [Return]    ${result}
+
+获取文本
+    [Arguments]    ${Xpath}
+    ${value}    get text    ${Xpath}
+    [Return]    ${value}
+
+元素不可用
+    [Arguments]    ${Xpath}
+    Element Should Be Disabled    Xpath=${Xpath}
+
+验证失败
+    Capture Page Screenshot
+    FAIL
+
+计算
+    [Arguments]    ${公式}
+    ${result}    Evaluate    ${公式}
+    [Return]    ${result}
+
+验证弹框
+    [Arguments]    ${包含内容}
+    ${弹框内容}    等待执行成功    捕捉弹框
+    ${是否成功}    find keyword    ${弹框内容}    ${包含内容}
+    Run Keyword If    ${是否成功} == True    Log    捕获验证成功
+    ...    ELSE    验证失败
+    等待执行成功    弹窗不可见
+
+元素不可见
+    [Arguments]    ${元素}
+    Wait Until Element Is Not Visible    ${元素}
+
+获取元素数量
+    [Arguments]    ${loc}
+    ${count}    Get Element Count    ${loc}
+    [Return]    ${count}
+
+上传
+    [Arguments]    ${fileName}    ${title}=打开
+    log    ${fileName}    INFO
+    win activate    ${title}
+    Control Focus    ${title}    \    Edit1
+    Win wait    [CLASS:#32770]    \    10
+    log    ${title}
+    sleep    2s
+    Control set text    ${title}    \    Edit1    ${fileName}
+    sleep    2s
+    Control Click    ${title}    \    Button1
+
+截屏
+    [Arguments]    ${img_name}
+    Selenium2Library.Set Screenshot Directory    ${img_path}
+    sleep    1s
+    Capture Page Screenshot    ${img_name}
+
+PASS
+    Log    执行成功
+    Comment    ${dict}    Open Sql Parameter    ${excel_path}    ${TEST NAME}-成功.jpg    ${results_sql}
+    Comment    Open img Parameter    ${excel_path}    ${img_path}    ${TEST NAME}-成功.jpg
+    截屏    ${TEST NAME}-成功.jpg
+
+Fail
+    截屏    ${TEST NAME}-失败.jpg
+    Comment    Open img Parameter    ${excel_path}    ${img_path}    ${TEST NAME}-失败.jpg
+
+获取当前时间
+    ${tm}    get_current_date
+    ${datetime}    Convert Date    ${tm}    datetime
+    ${y}    Set Variable    ${datetime.year}
+    ${mon}    Set Variable    ${datetime.month}
+    ${d}    Set Variable    ${datetime.day}
+    ${h}    Set Variable    ${datetime.hour}
+    ${M}    Set Variable    ${datetime.minute}
+    ${s}    Set Variable    ${datetime.second}
+    ${time}    Set Variable    ${y}${mon}${d}${h}
+    [Return]    ${time}
+
+DB数据转为字典
+    [Arguments]    ${DB_data}    @{bean_list}
+    ${results_sql}    Create Dictionary
+    ${dict}    Create List    @{bean_list}
+    ${list_lenth}    Get List Length    ${dict}
+    : FOR    ${cont}    IN RANGE    0    ${list_lenth}-1    1
+    \    Set To Dictionary    ${results_sql}    ${dict[${cont}]}    ${DB_data[0][${cont}]}
+    Set Global Variable    ${results_sql}
+
+时间戳
+    ${date_time}    Get Time Title
+    [Return]    ${date_time}
+
+组装sql语句
+    [Arguments]    ${table}    ${conditions}
+    Set Global Variable    ${Request_sql}    ${table} ${conditions}
+
+随机数
+    [Arguments]    ${start}    ${end}
+    ${number}    Evaluate    random.randint(${start},${end})    random
+    [Return]    ${number}
+
+获取元素值
+    [Arguments]    ${Xpath}
+    元素可见    ${Xpath}
+    ${value}    get value    ${Xpath}
+    [Return]    ${value}
+
+判断元素存在
+    [Arguments]    ${p}
+    ${R}    Run Keyword And Return Status    元素可见    ${p}
+    [Return]    ${R}

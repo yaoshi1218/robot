@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.7.3 on win32)" generated="20190621 17:53:18.256" rpa="false">
+<suite id="s1" name="练习" source="D:\rebot\练习">
+<suite id="s1-s1" name="TestSuit" source="D:\rebot\练习\TestSuit">
+<suite id="s1-s1-s1" name="投资" source="D:\rebot\练习\TestSuit\投资.robot">
+<kw name="打开浏览器登录并进入投标" library="前置条件" type="setup">
+<kw name="打开浏览器并登陆" library="前置条件">
+<kw name="打开浏览器" library="前置条件">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://120.78.128.25:8765/Index/login.html</arg>
+<arg>browser=gc</arg>
+</arguments>
+<msg timestamp="20190621 17:53:18.519" level="INFO">Opening browser 'gc' to base url 'http://120.78.128.25:8765/Index/login.html'.</msg>
+<status status="PASS" starttime="20190621 17:53:18.519" endtime="20190621 17:53:23.312"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20190621 17:53:23.313" endtime="20190621 17:53:24.463"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:18.518" endtime="20190621 17:53:24.463"></status>
+</kw>
+<kw name="填写登录名" library="登录页面">
+<arguments>
+<arg>${user_info_success[0]["username"]}</arg>
+</arguments>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>${用户输入框}</arg>
+<arg>10</arg>
+<arg>元素未找到</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:53:24.464" endtime="20190621 17:53:24.489"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>${用户输入框}</arg>
+<arg>${用户名}</arg>
+</arguments>
+<msg timestamp="20190621 17:53:24.489" level="INFO">Typing text '18684720553' into text field 'xpath://input[@name='phone']'.</msg>
+<status status="PASS" starttime="20190621 17:53:24.489" endtime="20190621 17:53:24.594"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:24.463" endtime="20190621 17:53:24.594"></status>
+</kw>
+<kw name="填写密码" library="登录页面">
+<arguments>
+<arg>${user_info_success[0]["pwd"]}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>${密码输入框}</arg>
+<arg>${密码}</arg>
+</arguments>
+<msg timestamp="20190621 17:53:24.597" level="INFO">Typing text 'python' into text field 'xpath://input[@name='password']'.</msg>
+<status status="PASS" starttime="20190621 17:53:24.596" endtime="20190621 17:53:24.678"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:24.594" endtime="20190621 17:53:24.679"></status>
+</kw>
+<kw name="点击登录按钮" library="登录页面">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>${登录按钮}</arg>
+<arg>10</arg>
+<arg>元素未找到</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:53:24.680" endtime="20190621 17:53:24.704"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>${登录按钮}</arg>
+</arguments>
+<msg timestamp="20190621 17:53:24.705" level="INFO">Clicking element '//button[contains(text(),'登录')]'.</msg>
+<status status="PASS" starttime="20190621 17:53:24.705" endtime="20190621 17:53:24.761"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:24.679" endtime="20190621 17:53:24.761"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:18.518" endtime="20190621 17:53:24.761"></status>
+</kw>
+<kw name="点击投标项目" library="主页面">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>${投标的名称}</arg>
+<arg>20</arg>
+<arg>元素未找到</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:53:24.762" endtime="20190621 17:53:46.416"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>${投标的名称}</arg>
+</arguments>
+<msg timestamp="20190621 17:53:46.417" level="INFO">Clicking element '//a[@class="btn btn-special"]'.</msg>
+<status status="PASS" starttime="20190621 17:53:46.416" endtime="20190621 17:54:09.213"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:24.762" endtime="20190621 17:54:09.213"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:18.517" endtime="20190621 17:54:09.213"></status>
+</kw>
+<test id="s1-s1-s1-t1" name="投资金额为100">
+<kw name="获取余额" library="项目页面">
+<assign>
+<var>${投资前余额}</var>
+</assign>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns value of ``attribute`` from element ``locator``.</doc>
+<arguments>
+<arg>${投资输入框}</arg>
+<arg>data-amount</arg>
+</arguments>
+<assign>
+<var>${当前余额}</var>
+</assign>
+<msg timestamp="20190621 17:54:09.237" level="INFO">${当前余额} = 492602.85</msg>
+<status status="PASS" starttime="20190621 17:54:09.216" endtime="20190621 17:54:09.237"></status>
+</kw>
+<msg timestamp="20190621 17:54:09.237" level="INFO">${投资前余额} = 492602.85</msg>
+<status status="PASS" starttime="20190621 17:54:09.215" endtime="20190621 17:54:09.237"></status>
+</kw>
+<kw name="进行投资" library="项目页面">
+<arguments>
+<arg>${investment_success_data.amount}</arg>
+</arguments>
+<kw name="定位输入框" library="项目页面">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>${投资输入框}</arg>
+<arg>10</arg>
+<arg>元素未找到</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:54:09.239" endtime="20190621 17:54:09.258"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.238" endtime="20190621 17:54:09.259"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>${投资输入框}</arg>
+<arg>${输入金额}</arg>
+</arguments>
+<msg timestamp="20190621 17:54:09.259" level="INFO">Typing text '100' into text field '//input[@data-url='/Invest/invest']'.</msg>
+<status status="PASS" starttime="20190621 17:54:09.259" endtime="20190621 17:54:09.329"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.238" endtime="20190621 17:54:09.329"></status>
+</kw>
+<kw name="点击投标按钮" library="项目页面">
+<kw name="定位投标按钮" library="项目页面">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>${确认投标按钮}</arg>
+<arg>10</arg>
+<arg>元素未找到</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:54:09.330" endtime="20190621 17:54:09.363"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.329" endtime="20190621 17:54:09.363"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>${确认投标按钮}</arg>
+</arguments>
+<msg timestamp="20190621 17:54:09.364" level="INFO">Clicking element '//div[@class='right']//button'.</msg>
+<status status="PASS" starttime="20190621 17:54:09.364" endtime="20190621 17:54:09.419"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.329" endtime="20190621 17:54:09.419"></status>
+</kw>
+<kw name="获取成功投资信息" library="项目页面">
+<assign>
+<var>${msg}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>${投标成功}</arg>
+<arg>10</arg>
+<arg>元素未找到</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:54:09.420" endtime="20190621 17:54:09.663"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>${投标成功}</arg>
+</arguments>
+<assign>
+<var>${投标成功的信息}</var>
+</assign>
+<msg timestamp="20190621 17:54:09.692" level="INFO">${投标成功的信息} = 投标成功！恭喜获得抢先投标奖励+0.75%奖励！</msg>
+<status status="PASS" starttime="20190621 17:54:09.664" endtime="20190621 17:54:09.692"></status>
+</kw>
+<msg timestamp="20190621 17:54:09.693" level="INFO">${msg} = 投标成功！恭喜获得抢先投标奖励+0.75%奖励！</msg>
+<status status="PASS" starttime="20190621 17:54:09.419" endtime="20190621 17:54:09.693"></status>
+</kw>
+<kw name="进行断言开头匹配" library="通用功能">
+<doc>断言对比第一个值开头</doc>
+<arguments>
+<arg>${msg}</arg>
+<arg>${investment_success_data.expected}</arg>
+</arguments>
+<kw name="Should Start With" library="BuiltIn">
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<arguments>
+<arg>${first}</arg>
+<arg>${second}</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:54:09.694" endtime="20190621 17:54:09.694"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.693" endtime="20190621 17:54:09.694"></status>
+</kw>
+<kw name="关闭投资成功弹窗" library="项目页面">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>${关闭成功界面}</arg>
+<arg>10</arg>
+<arg>元素未找到</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:54:09.695" endtime="20190621 17:54:09.721"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>${关闭成功界面}</arg>
+</arguments>
+<msg timestamp="20190621 17:54:09.722" level="INFO">Clicking element '//div[@class='layui-layer-content']//div[@class='close_pop']/img'.</msg>
+<status status="PASS" starttime="20190621 17:54:09.721" endtime="20190621 17:54:09.764"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.694" endtime="20190621 17:54:09.764"></status>
+</kw>
+<kw name="浏览器刷新" library="通用功能">
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.location.reload();</arg>
+</arguments>
+<msg timestamp="20190621 17:54:09.766" level="INFO">Executing JavaScript:
+window.location.reload();
+Without any arguments.</msg>
+<status status="PASS" starttime="20190621 17:54:09.765" endtime="20190621 17:54:32.340"></status>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<arguments>
+<arg>10</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:54:32.340" endtime="20190621 17:54:32.342"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>0.2</arg>
+</arguments>
+<msg timestamp="20190621 17:54:32.543" level="INFO">Slept 200 milliseconds</msg>
+<status status="PASS" starttime="20190621 17:54:32.343" endtime="20190621 17:54:32.543"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.765" endtime="20190621 17:54:32.543"></status>
+</kw>
+<kw name="获取余额" library="项目页面">
+<assign>
+<var>${投资后余额}</var>
+</assign>
+<kw name="Get Element Attribute" library="SeleniumLibrary">
+<doc>Returns value of ``attribute`` from element ``locator``.</doc>
+<arguments>
+<arg>${投资输入框}</arg>
+<arg>data-amount</arg>
+</arguments>
+<assign>
+<var>${当前余额}</var>
+</assign>
+<msg timestamp="20190621 17:54:32.561" level="INFO">${当前余额} = 492502.85</msg>
+<status status="PASS" starttime="20190621 17:54:32.544" endtime="20190621 17:54:32.562"></status>
+</kw>
+<msg timestamp="20190621 17:54:32.562" level="INFO">${投资后余额} = 492502.85</msg>
+<status status="PASS" starttime="20190621 17:54:32.543" endtime="20190621 17:54:32.562"></status>
+</kw>
+<kw name="投资金额对比" library="项目页面">
+<arguments>
+<arg>${investment_success_data.amount}</arg>
+<arg>${投资前余额}</arg>
+<arg>${投资后余额}</arg>
+</arguments>
+<kw name="乘以100" library="项目页面">
+<arguments>
+<arg>${投资前余额}</arg>
+</arguments>
+<assign>
+<var>${投资前余额*100}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${数字}*100</arg>
+</arguments>
+<assign>
+<var>${res}</var>
+</assign>
+<msg timestamp="20190621 17:54:32.564" level="INFO">${res} = 49260285.0</msg>
+<status status="PASS" starttime="20190621 17:54:32.563" endtime="20190621 17:54:32.564"></status>
+</kw>
+<msg timestamp="20190621 17:54:32.564" level="INFO">${投资前余额*100} = 49260285.0</msg>
+<status status="PASS" starttime="20190621 17:54:32.563" endtime="20190621 17:54:32.564"></status>
+</kw>
+<kw name="乘以100" library="项目页面">
+<arguments>
+<arg>${投资后余额}</arg>
+</arguments>
+<assign>
+<var>${投资后余额*100}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${数字}*100</arg>
+</arguments>
+<assign>
+<var>${res}</var>
+</assign>
+<msg timestamp="20190621 17:54:32.565" level="INFO">${res} = 49250285.0</msg>
+<status status="PASS" starttime="20190621 17:54:32.565" endtime="20190621 17:54:32.565"></status>
+</kw>
+<msg timestamp="20190621 17:54:32.565" level="INFO">${投资后余额*100} = 49250285.0</msg>
+<status status="PASS" starttime="20190621 17:54:32.564" endtime="20190621 17:54:32.565"></status>
+</kw>
+<kw name="乘以100" library="项目页面">
+<arguments>
+<arg>${投资金额}</arg>
+</arguments>
+<assign>
+<var>${投资金额*100}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${数字}*100</arg>
+</arguments>
+<assign>
+<var>${res}</var>
+</assign>
+<msg timestamp="20190621 17:54:32.567" level="INFO">${res} = 10000</msg>
+<status status="PASS" starttime="20190621 17:54:32.566" endtime="20190621 17:54:32.567"></status>
+</kw>
+<msg timestamp="20190621 17:54:32.567" level="INFO">${投资金额*100} = 10000</msg>
+<status status="PASS" starttime="20190621 17:54:32.566" endtime="20190621 17:54:32.567"></status>
+</kw>
+<kw name="两数求差" library="项目页面">
+<arguments>
+<arg>${投资前余额*100}</arg>
+<arg>${投资金额*100}</arg>
+</arguments>
+<assign>
+<var>${计算投资后的余额}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${第一个数}-${第二个数}</arg>
+</arguments>
+<assign>
+<var>${res}</var>
+</assign>
+<msg timestamp="20190621 17:54:32.569" level="INFO">${res} = 49250285.0</msg>
+<status status="PASS" starttime="20190621 17:54:32.568" endtime="20190621 17:54:32.569"></status>
+</kw>
+<msg timestamp="20190621 17:54:32.569" level="INFO">${计算投资后的余额} = 49250285.0</msg>
+<status status="PASS" starttime="20190621 17:54:32.567" endtime="20190621 17:54:32.569"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${计算投资后的余额}</arg>
+<arg>${投资后余额*100}</arg>
+</arguments>
+<status status="PASS" starttime="20190621 17:54:32.569" endtime="20190621 17:54:32.570"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:32.562" endtime="20190621 17:54:32.570"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:09.214" endtime="20190621 17:54:32.570" critical="yes"></status>
+</test>
+<kw name="关闭浏览器" library="前置条件" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20190621 17:54:32.571" endtime="20190621 17:54:34.741"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:54:32.571" endtime="20190621 17:54:34.741"></status>
+</kw>
+<status status="PASS" starttime="20190621 17:53:18.325" endtime="20190621 17:54:34.741"></status>
+</suite>
+<status status="PASS" starttime="20190621 17:53:18.322" endtime="20190621 17:54:34.743"></status>
+</suite>
+<status status="PASS" starttime="20190621 17:53:18.294" endtime="20190621 17:54:34.745"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="练习">练习</stat>
+<stat pass="1" fail="0" id="s1-s1" name="TestSuit">练习.TestSuit</stat>
+<stat pass="1" fail="0" id="s1-s1-s1" name="投资">练习.TestSuit.投资</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
